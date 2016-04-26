@@ -7,16 +7,14 @@ var db = mysql.createConnection({
   user    : 'root',
   password: '978PoRsc',
   database: 'homedb',
-  debug   :  true,
+  debug   :  true
 
 });
 
 db.connect(function(err) {
   if (err) throw err
-  console.log('You are now connected...');
+  console.log('You are now connected to the database...');
 });
 
 
 module.exports = db;
-
-//db.end();

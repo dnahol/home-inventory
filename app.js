@@ -17,8 +17,6 @@ app.use(express.static('public'));
 app.use('/api', require('./routes/api'));
 
 
-
-
 app.listen(PORT, err => {
   console.log(err || `Server listening on port ${PORT}`);
 });

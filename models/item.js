@@ -31,14 +31,23 @@ exports.delete = function(item, cb) {
 };
 
 exports.update = function(itemId, item, cb) {
-  console.log( 'itemId.id: ', itemId.id );
-  console.log('item.description: ', item.description );
-  console.log('item.category: ', item.category);
-  console.log('item.price: ', item.price );
-  console.log('item.room: ', item.room);
+
   if(!itemId.id || !item.description || !item.category || !item.price || !item.room) {
     return cb('You need an id, description, category, price, and room.');
   }
   db.query(`UPDATE items SET description=?, category=?, price=?, room=? WHERE id = ?`,
       [item.description, item.category, Number(item.price), Number(item.room), Number(itemId.id)], cb);
+};
+
+
+exports.total = function(cb) {
+
+  db.query('SELECT sum(price) AS grandTotal FROM items', cb);
+
+}
+
+exports.catTotals = function(cb) {
+
+  db.query('SELECT category, sum(price) AS total FROM items GROUP BY category', cb);
+
 };

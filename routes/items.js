@@ -42,5 +42,24 @@ router.route('/')
     });
   });
 
+router.route('/totals')
+  .get((req, res) => {
+    Item.total((err, total) => {
+      if(err) {
+        return res.status(400).send(err);
+      }
+      res.send(total);
+    });
+  });
+
+router.route('/categories/totals')
+  .get((req, res) => {
+    Item.catTotals((err, catTotals) => {
+      if(err) {
+        return res.status(400).send(err);
+      }
+      res.send(catTotals);
+    });
+  });
 
 module.exports = router;
