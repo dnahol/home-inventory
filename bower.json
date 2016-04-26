@@ -1,0 +1,21 @@
+{
+  "name": "home-inventory",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "dnahol <dalia.nahol@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/dnahol/codinghouse",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3"
+  }
+}
