@@ -1,8 +1,57 @@
-<!DOCTYPE html>
-html(lang="en")
-head
-  meta(charset="UTF-8")
-  title Document
-  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-body
+extends ./layout.jade
+
+block content
+  .container
+    h1.text-center Home Inventory
+    row
+      .col-xs-6.left
+        p
+          h2 Add Item 
+        form.newItemForm
+          fieldset.form-group
+            label(for='inputDesc') Description
+            input#inputDesc.form-control(type='text', placeholder='Item Description')
+            small.text-muted Enter an Item to Add
+
+          fieldset.form-group
+            label(for='inputCat') Category
+            input#inputCat.form-control(type='text', placeholder='Item Category')
+            small.text-muted Item Category e.g. Electronics, Appliances, Furniture
+              
+      
+          fieldset.form-group
+            label.control-label Value
+            .input-group
+              span.input-group-addon $
+              input#inputPrice.form-control(type='text', placeholder='Item Value')
+            small.text-muted Enter Value of the Item in $           
+        
+        
+          fieldset.form-group
+            label(for='roomSelect') Room
+            select#roomSelect.form-control
+              option 1
+              option 2
+              option 3
+              option 4
+              option 5
+            small.text-muted Enter Room of the Home is the Item is in         
+          button.btn.btn-primary(type='submit') Submit
+          
+      .col-xs-6.right
+        table.table.table-inverse
+          thead
+            tr
+              th Item ID
+              th Description
+              th Category
+              th Price
+              th Room ID
+              th Delete
+          tbody#itemTable
+
+
+
+
   
+            
