@@ -2,7 +2,8 @@ extends ./layout.jade
 
 block content
   .container
-    h1.text-center Home Inventory
+    h1.text-center Your Home Inventory
+    h2.text-center B Safe Home Insurance
     row
       .col-xs-6.left
         p
@@ -12,21 +13,16 @@ block content
             label(for='inputDesc') Description
             input#inputDesc.form-control(type='text', placeholder='Item Description')
             small.text-muted Enter an Item to Add
-
           fieldset.form-group
             label(for='inputCat') Category
             input#inputCat.form-control(type='text', placeholder='Item Category')
             small.text-muted Item Category e.g. Electronics, Appliances, Furniture
-              
-      
           fieldset.form-group
             label.control-label Value
             .input-group
               span.input-group-addon $
               input#inputPrice.form-control(type='text', placeholder='Item Value')
             small.text-muted Enter Value of the Item in $           
-        
-        
           fieldset.form-group
             label(for='roomSelect') Room
             select#roomSelect.form-control
@@ -36,7 +32,38 @@ block content
               option 4
               option 5
             small.text-muted Enter Room of the Home is the Item is in         
-          button.btn.btn-primary(type='submit') Submit
+          button#newSave.btn.btn-primary(type='submit') Submit
+          p
+            h2 Edit Item
+        form.editItemForm
+          fieldset.form-group
+            label(for='editId') Item ID
+            input#editId.form-control(type='text', placeholder='Item ID')
+            small.text-muted Enter ID of Item to Edit (see table)
+          fieldset.form-group
+            label(for='inputDesc') Description
+            input#editDesc.form-control(type='text', placeholder='Item Description')
+            small.text-muted Edit Item Description
+          fieldset.form-group
+            label(for='inputCat') Category
+            input#editCat.form-control(type='text', placeholder='Item Category')
+            small.text-muted Item Category e.g. Electronics, Appliances, Furniture
+          fieldset.form-group
+            label.control-label Value
+            .input-group
+              span.input-group-addon $
+              input#editPrice.form-control(type='text', placeholder='Item Value')
+            small.text-muted Enter Value of the Item in $           
+          fieldset.form-group
+            label(for='roomSelect') Room
+            select#editRoom.form-control
+              option 1
+              option 2
+              option 3
+              option 4
+              option 5
+            small.text-muted Enter Room of the Home is the Item is in         
+          button#editSave.btn.btn-primary(type='submit') Save Edit
           
       .col-xs-6.right
         table.table.table-inverse
@@ -49,8 +76,25 @@ block content
               th Room ID
               th Delete
           tbody#itemTable
+          
+          table.table.table-inverse
+            thead
+              tr
+                th Room ID
+                th Description
+            tbody#roomTable
+          
+          p Sorry, we have not provided a way to delete rooms via this interface.
+          p You may delete rooms via the API 
+          p You may also query our API for total value of all your items, 
+          p value by category and value by price.
+          p For more info: customer service 1.888.888.8888
 
 
+
+
+
+    
 
 
   

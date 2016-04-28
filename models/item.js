@@ -15,13 +15,25 @@ exports.get = function(cb) {
   db.query('SELECT * FROM items', cb);
 };
 
-exports.create = function(item, cb) {
-  if(!item.description || !item.category || !item.price || !item.room) {
+exports.create = function(body, cb) {
+  if(!body.description || !body.category || !body.price || !body.room) {
     return cb('You need a description, category, price, and room.');
   }
   db.query('INSERT INTO items (description, category, price, room) VALUES (?)',
-  [[item.description, item.category, Number(item.price), Number(item.room)]], cb);
+  [[body.description, body.category, Number(body.price), Number(body.room)]], function(err, result) {
+    if(err) return cb(err);
+
+    db.query('SELECT * FROM items WHERE id = ?', result.insertId, cb);
+  });
 };
+
+exports.getById = function(itemId, cb) {
+  if(!itemId) {
+    return cb('You need an id.');
+  }
+  db.query('SELECT * FROM items WHERE id = ?', itemId, cb);
+};
+
 
 exports.delete = function(item, cb) {
   if(!item.id) {
@@ -30,15 +42,14 @@ exports.delete = function(item, cb) {
   db.query('DELETE FROM items WHERE id = ?', item.id, cb);
 };
 
-exports.update = function(itemId, item, cb) {
+exports.update = function(itemId, body, cb) {
 
-  if(!itemId.id || !item.description || !item.category || !item.price || !item.room) {
+  if(!itemId || !body.description || !body.category || !body.price || !body.room) {
     return cb('You need an id, description, category, price, and room.');
   }
   db.query(`UPDATE items SET description=?, category=?, price=?, room=? WHERE id = ?`,
-      [item.description, item.category, Number(item.price), Number(item.room), Number(itemId.id)], cb);
+      [body.description, body.category, Number(body.price), Number(body.room), Number(itemId)], cb);
 };
-
 
 exports.total = function(cb) {
 

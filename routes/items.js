@@ -16,41 +16,49 @@ router.route('/')
   })
   .post((req, res) => {
     //req.body ---> { name: ??, price: ??}
-    Item.create(req.body, err => {
+    Item.create(req.body, (err, item) => {
       if(err) {
         return res.status(400).send(err);
       }
-      res.send();
+      res.send(item);
     });
   });
 
-  router.delete('/:id/delete', (req, res) => {
-    Item.delete(req.params, err => {
-      if(err) {
-        return res.status(400).send(err);
-      }
-      res.send();
-    });
+router.get('/:id', (req, res) => {
+  Item.getById(req.params.id, (err, item) => {
+    if(err) {
+      return res.status(400).send(err);
+    }
+    res.send(item);
   });
+});
 
-  router.put('/:id/update', (req, res) => {
-    Item.update(req.params, req.body, err => {
-      if(err) {
-        return res.status(400).send(err);
-      }
-      res.send();
-    });
+router.delete('/:id', (req, res) => {
+  Item.delete(req.params, err => {
+    if(err) {
+      return res.status(400).send(err);
+    }
+    res.send();
   });
+});
 
-router.route('/totals')
-  .get((req, res) => {
-    Item.total((err, total) => {
-      if(err) {
-        return res.status(400).send(err);
-      }
-      res.send(total);
-    });
+router.put('/:id', (req, res) => {
+  Item.update(req.params.id, req.body, (err, item) => {
+    if(err) {
+      return res.status(400).send(err);
+    }
+    res.send(item);
   });
+});
+
+router.get('/totals', (req, res) => {
+  Item.total((err, total) => {
+    if(err) {
+      return res.status(400).send(err);
+    }
+    res.send(total);
+  });
+});
 
 router.route('/categories/totals')
   .get((req, res) => {

@@ -18,7 +18,7 @@ app.use(express.static('public'));
 app.use('/api', require('./routes/api'));
 
 app.get('/', (req, res, next) => {
-  res.render('home', {text: 'whatver you like'});
+  res.render('home', {text: 'stuff'});
 });
 
 app.use((req, res, next) => {
