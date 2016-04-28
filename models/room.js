@@ -32,7 +32,7 @@ exports.update = function(roomId, room, cb) {
   if(!roomId.id || !room.description) {
     return cb('You need a room id and description');
   }
-  db.query(`UPDATE items SET description=? WHERE id = ?`,
+  db.query(`UPDATE rooms SET description=? WHERE id = ?`,
       [room.description, Number(roomId.id)], cb);
 };
 
