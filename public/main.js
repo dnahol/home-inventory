@@ -50,7 +50,6 @@ function saveEdit(event) {
   $('#editPrice').val('');
   $('#editRoom').val('');
 
-  console.log( 'newItem: ', newItem );
 //  var $newRow = makeItemRow(newItem);
 
   $.ajax({
