@@ -3,7 +3,7 @@
 var mysql = require('mysql');
 
 var db = mysql.createConnection({
-  host    : process.env.CLEARDB_DATABASE_URI || 'localhost',
+  host    : process.env.CLEARDB_DATABASE_URL || 'localhost',
   user    : 'root',
   password: '978PoRsc',
   database: 'homedb',
